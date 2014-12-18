@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="js/app.js"></script>
+</head>
+<body>
+	<a href="javascript:;" class="jq-menu">menu</a>
+</body>
+<script>
+	$(function(){
+		$(".jq-menu").click(function(){
+			alert($().jquery)
+			menu.open([
+				{
+					name:"回 复",
+					class:"menux1"
+				},
+				{
+					name:"删 除",
+					class:"menux2 jq-ccc"
+				}
+			]);
+
+		})
+	})
+</script>
+</html>
