@@ -73,7 +73,7 @@ function createItem(entry) {
 	document.getElementById("uploadImgBox").insertBefore(li,document.getElementById("uploadImgBox").childNodes[0]);
 }
 function createItem2(path) {
-	var fullPath = "";
+	var fullPath = path;
 	if (path.indexOf("file://") >= 0) {
 		var newArr = path.split("://");
 		fullPath = newArr[1];
