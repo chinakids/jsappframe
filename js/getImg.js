@@ -58,8 +58,8 @@ function galleryImg() {
 	// 从相册中选择图片
 	console.log("从相册中选择图片:");
 	plus.gallery.pick(function(path) {
-
-		createItem2(path);
+		var entry = path; 
+		createItem(entry);
 	}, function(e) {
 		console.log("取消选择图片");
 	});
@@ -67,19 +67,34 @@ function galleryImg() {
 
  // 添加列表
 function createItem(entry) {
-	var li = document.createElement("li");
-	li.innerHTML = '<img src="'+entry.fullPath+'" data-id="'+entry.fullPath+'" />';
-	li.setAttribute("onclick", "menu.open([{name:'删除',class:'jq-delImg'}],'"+entry.fullPath+"');");
-	document.getElementById("uploadImgBox").insertBefore(li,document.getElementById("uploadImgBox").childNodes[0]);
-}
-function createItem2(path) {
-	var fullPath = path;
-	if (path.indexOf("file://") >= 0) {
-		var newArr = path.split("://");
-		fullPath = newArr[1];
+	var type = typeof(entry);
+	if(type == "object"){
+		var li = document.createElement("li");
+		li.innerHTML = '<img src="'+entry.fullPath+'" data-id="'+entry.fullPath+'" />';
+		li.setAttribute("onclick", "menu.open([{name:'删除',class:'jq-delImg'}],'"+entry.fullPath+"');");
+		document.getElementById("uploadImgBox").insertBefore(li,document.getElementById("uploadImgBox").childNodes[0]);
+	}else if(type == "string"){
+		var fullPath = entry;
+		if (entry.indexOf("file://") >= 0) {
+			var newArr = entry.split("://");
+			fullPath = newArr[1];
+		}
+		var li = document.createElement("li");
+		li.innerHTML = '<img src="'+fullPath+'" data-id="'+fullPath+'"/>';
+		li.setAttribute("onclick", "menu.open([{name:'删除',class:'jq-delImg'}],'"+fullPath+"');");
+		document.getElementById("uploadImgBox").insertBefore(li,document.getElementById("uploadImgBox").childNodes[0]);
 	}
-	var li = document.createElement("li");
-	li.innerHTML = '<img src="'+fullPath+'" data-id="'+fullPath+'"/>';
-	li.setAttribute("onclick", "menu.open([{name:'删除',class:'jq-delImg'}],'"+fullPath+"');");
-	document.getElementById("uploadImgBox").insertBefore(li,document.getElementById("uploadImgBox").childNodes[0]);
+	
 }
+//function createItem2(path) {
+//	alert(typeof(path))
+//	var fullPath = path;
+//	if (path.indexOf("file://") >= 0) {
+//		var newArr = path.split("://");
+//		fullPath = newArr[1];
+//	}
+//	var li = document.createElement("li");
+//	li.innerHTML = '<img src="'+fullPath+'" data-id="'+fullPath+'"/>';
+//	li.setAttribute("onclick", "menu.open([{name:'删除',class:'jq-delImg'}],'"+fullPath+"');");
+//	document.getElementById("uploadImgBox").insertBefore(li,document.getElementById("uploadImgBox").childNodes[0]);
+//}

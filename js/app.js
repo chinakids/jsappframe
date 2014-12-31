@@ -54,7 +54,6 @@
 				menuList = "";
 
 			_this.val.id = id;
-
 			for (var i = 0, mun = config.length; i < mun; i++) {
 
 				menuList += "<li class='" + config[i].class + "' data-id='" + id + "'>" + config[i].name + "</li>";
